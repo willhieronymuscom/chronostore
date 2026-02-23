@@ -14,3 +14,27 @@ Implement a simple **in-memory key-value store** with **TTL (time-to-live)** fun
 - Store everything in memory (no external databases).
 
 ---
+
+## Project Notes
+
+ChronoStore is implemented in Python 3.12+ and uses uv for package and dependency management
+via pyproject.toml.
+
+## Tooling & Environment
+
+- Language: Python (>= 3.12)
+- Package management: uv
+- Testing: pytest
+- Coverage: pytest-cov
+- Runtime dependencies: none
+
+## Common Commands
+
+Testing:
+
+- make test
+- make coverage
+
+Demo:
+
+- make demo

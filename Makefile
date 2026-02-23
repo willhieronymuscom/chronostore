@@ -19,6 +19,12 @@ coverage:
 	uv run pytest --cov=src --cov-report=term-missing
 
 
+# Runs unit test coverage and builds html report
+.PHONY: coverage-report
+coverage-report:
+	uv run pytest --cov=src --cov-report=html
+
+
 # Clean Python artifacts
 .PHONY: clean
 clean:

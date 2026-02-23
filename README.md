@@ -34,6 +34,7 @@ Testing:
 
 - make test
 - make coverage
+- make coverage-report [html report]
 
 Demo:
 

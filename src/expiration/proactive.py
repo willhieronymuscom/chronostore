@@ -21,6 +21,12 @@ class ProactiveExpirationPolicy(ExpirationPolicy):
         key: str,
         expires_at: int
     ) -> None:
+        """
+        Proactive on set costs OLog n) to update
+        the binary tree
+        """
+        # Proactive on set
+        # push expired/key to heap
         heapq.heappush(self._heap, (expires_at, key))
 
     def cleanup(
@@ -33,8 +39,11 @@ class ProactiveExpirationPolicy(ExpirationPolicy):
         """
         Remove all expired keys at the top of the heap.
         Only delete if the heap entry matches the store’s current expiry.
+
+        Proactive cleanup costs "get" O(log n)
         """
         while self._heap:
+            # peak at current top
             expires_at_top, key_top = self._heap[0]
 
             # Stop when we hit an unexpired item

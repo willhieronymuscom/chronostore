@@ -22,6 +22,7 @@ class OnDemandExpirationPolicy(ExpirationPolicy):
         *,
         key: str | None = None
     ) -> None:
+        # OnDemand cleanup keeps access at O(1)
         if key is None:
             return
 

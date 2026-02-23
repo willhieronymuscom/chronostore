@@ -29,11 +29,11 @@ class Store:
             self._delete_key(key)
             return
 
-        # Write the value and expiry
+        # Write the value and expired_at
         self._values[key] = value
         self._expires[key] = expires_at
 
-        # Let the policy track the set
+        # Expiration policy updates state on set if needed.
         self._policy.on_set(self, key, expires_at)
 
     def get(self, key: str) -> Any | None:
@@ -43,7 +43,7 @@ class Store:
         """
         now = self._clock()
 
-        # Perform cleanup via policy
+        # Expiration policy will handle cleanup
         self._policy.cleanup(self, now, key=key)
 
         # After cleanup, check existence
@@ -54,7 +54,7 @@ class Store:
 
     def _delete_key(self, key: str) -> None:
         """
-        Internal helper to remove a key from the store.
+        Delete key to keep logic in one place
         """
         self._values.pop(key, None)
         self._expires.pop(key, None)
